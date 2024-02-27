@@ -1,4 +1,7 @@
-   
+import random   
+import timeit
+
+
 
 #https://www.geeksforgeeks.org/python-program-for-insertion-sort/
 def insertionSort(arr):
@@ -15,6 +18,7 @@ def insertionSort(arr):
             j -= 1
         arr[j+1] = key  # Insert the key in the correct position
   
+#https://www.geeksforgeeks.org/python-program-for-merge-sort/
 def merge(arr, l, m, r):
     n1 = m - l + 1
     n2 = r - m
@@ -71,5 +75,21 @@ def mergeSort(arr, l, r):
         mergeSort(arr, l, m)
         mergeSort(arr, m+1, r)
         merge(arr, l, m, r)
+
+
+n = 14000
+arr = []
+
+for i in range(n):
+    arr.append(random.randint(0, 100))
+
+sorted_arr = arr.copy()
+sorted_arr.sort()
+
+print("Unsorted Array w/ Insertion: ", timeit.timeit('insertionSort(arr)', globals=globals(), number=10))
+print("Unsorted Array w/ Merge: ", timeit.timeit('mergeSort(arr,0, len(arr) - 1)', globals=globals(), number=10))
+print("Sorted Array w/ Insertion: ", timeit.timeit('insertionSort(sorted_arr)', globals=globals(), number=10))
+print("Sorted Array w/ Merge: ", timeit.timeit('mergeSort(sorted_arr,0, len(sorted_arr) - 1)', globals=globals(), number=10))
+
 
 
